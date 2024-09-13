@@ -1,11 +1,5 @@
 # Introduction to SQL
 
-## Course Goals
-1. Understand databases and their structure (Chapter 1)
-2. Extract information from databases using SQL (Chapter 2)
-
----
-
 ## Databases Overview
 
 - **Relational Databases**: Define relationships between tables of data.
@@ -49,4 +43,85 @@
   - Common data type: `INT`
 - **Floats**: Numbers including fractional parts.
   - Common data type: `NUMERIC`
+
+## Querying
+
+  - Example Query:
+    ```sql
+    SELECT name
+    FROM patrons;
+    ```
+    Query results often called result set.
+  - ```sql
+    SELECT card_num, name
+    FROM patrons;
+    ```
+    First column: card_num \
+    Second column: name.
+  - ```sql
+    SELECT card_num, name
+    FROM patrons;
+    ```
+    First column: name \
+    Second column: card_num.
+   - ```sql
+     SELECT *
+     FROM patrons;
+     ```
+     select all fields.
+
+## Aliasing
+
+  - ```sql
+    SELECT name AS first_name, year_hired
+    FROM employees;
+    ```
+    Rename fields.
+  - ```sql
+    SELECT year_hired
+    FROM employees;
+    ```
+    Select the entire field "year_hired".
+  - ```sql
+    SELECT DISTINCT year_hired
+    FROM employees;
+    ```
+    Select only the distinct year from the field "year_hired".
+  - ```sql
+    SELECTDISTINCT dept_id, year_hired
+    FROM employees;
+    ```
+    | dept_id | year_hired |
+    |---------|------------|
+    | 1       | 2020       |
+    | 2       | 2017       |
+    | 2       | 2022       |
+    | 3       | 2021       |
+    | 2       | 2020       |
+    Select multiple fields and apply distinct filter on them
+## Views
+
+ - A view is a virtual table that is the result of a saved SQL SELECT statement
+ - When accessed, views automatically update in response to updates in the underlying data
+```sql
+CREATE VIEW employee_hire_years AS
+SELECT id, name, year_hired
+FROM employees;
+```
+ - example:
+   ```sql
+   SELECT id, name
+   FROM employee_hire_years;
+   ```
+   | id    | name    |
+   |-------|---------|
+   | 54378 | Darius  |
+   | 94722 | Raven   |
+   | 45783 | Eduardo |
+   | 90123 | Maggie  |
+   | 67284 | Amy     |
+   | 26148 | Meehir  |
+
+
+
 
